@@ -7,6 +7,22 @@ window.TRIP_DATA = {
       "note": "국제선 출발 전 수속과 탑승 준비. 시간은 해당 도시 현지 시각입니다.",
       "events": [
         {
+          "time": "18:13",
+          "title": "대전 → 광명 · 국내 열차",
+          "detail": "18:58 도착",
+          "kind": "fixed",
+          "place": "Daejeon Station",
+          "ref": ""
+        },
+        {
+          "time": "19:30",
+          "title": "광명 → 인천 · 공항버스 · 인천공항 T1",
+          "detail": "20:20 도착 예상",
+          "kind": "fixed",
+          "place": "Gwangmyeong Station",
+          "ref": ""
+        },
+        {
           "time": "20:20",
           "title": "인천공항 T1 도착 예상 · 출국 수속",
           "detail": "현지 시간 기준 · 이동·방문 일정",
@@ -24,6 +40,8 @@ window.TRIP_DATA = {
         }
       ],
       "route": [
+        "Daejeon Station",
+        "Gwangmyeong Station",
         "Incheon Airport Terminal 1"
       ]
     },
@@ -694,6 +712,30 @@ window.TRIP_DATA = {
     }
   ],
   "transport": [
+    {
+      "date": "2026-11-07",
+      "name": "대전 → 광명",
+      "depart": "18:13",
+      "arrive": "18:58",
+      "kind": "train",
+      "code": "국내 열차",
+      "ref": "",
+      "seat": "",
+      "price": "",
+      "note": "사용자가 변경한 이동 시간 · 도착 시간은 교통 상황에 따라 달라질 수 있어요."
+    },
+    {
+      "date": "2026-11-07",
+      "name": "광명 → 인천",
+      "depart": "19:30",
+      "arrive": "20:20",
+      "kind": "bus",
+      "code": "공항버스 · 인천공항 T1",
+      "ref": "",
+      "seat": "",
+      "price": "",
+      "note": "사용자가 변경한 이동 시간 · 도착 시간은 교통 상황에 따라 달라질 수 있어요."
+    },
     {
       "date": "2026-11-07",
       "name": "인천 → 헬싱키",
