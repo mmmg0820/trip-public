@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {sightseeing,dining} from '../itinerary.js';
 test('public timelines use explicit time ranges and valid dining references',()=>{
  for(const d of sightseeing){
-  assert.deepEqual(Object.keys(d).sort(),['basis','city','pace','rain','slots','title','url']);
+  assert.deepEqual(Object.keys(d).sort(),['basis','city','date','pace','rain','slots','title','url']);
   assert(d.slots.length>=3);assert(new URL(d.url).protocol==='https:');
   let prior=0;
   for(const slot of d.slots){
@@ -26,4 +26,13 @@ test('dining details provide public menu, directions and source links',()=>{
  }
  assert(dining.eska.hours.includes('18:00'));
  assert(dining.sophien.hours.includes('월요일 휴무'));
+});
+
+test('dated itinerary matches the eleven travel days without extra tourist days',()=>{
+ assert.equal(sightseeing.length,11);
+ assert.deepEqual(sightseeing.map(d=>d.date),["11월 7일 (토)","11월 8일 (일)","11월 9일 (월)","11월 10일 (화)","11월 11일 (수)","11월 12일 (목)","11월 13일 (금)","11월 14일 (토)","11월 15일 (일)","11월 16일 (월)","11월 17일 (화)"]);
+ assert.equal(sightseeing[1].city,'헬싱키');
+ assert.equal(sightseeing[5].city,'할슈타트');
+ assert.equal(sightseeing[7].city,'드레스덴');
+ assert(!sightseeing.some(d=>d.pace.includes('추가 관광일')));
 });

@@ -1,7 +1,7 @@
 import './assets/vendor/leaflet.js';
-import {escapeHTML as esc,routeVehicleTransform} from './core.js?v=15';
-import {vehicleArt} from './vehicle-art.js?v=15';
-import {setupMap as setupDiagram,disposeDiagram,setDiagramPaused,isDiagramPaused} from './map-fallback.js?v=15';
+import {escapeHTML as esc,routeVehicleTransform} from './core.js?v=16';
+import {vehicleArt} from './vehicle-art.js?v=16';
+import {setupMap as setupDiagram,disposeDiagram,setDiagramPaused,isDiagramPaused} from './map-fallback.js?v=16';
 const points={대전:[36.332,127.435],광명:[37.416,126.884],인천:[37.46,126.45],헬싱키:[60.32,24.97],부다페스트:[47.50,19.08],빈:[48.19,16.38],린츠:[48.29,14.29],프라하:[50.08,14.44],드레스덴:[51.04,13.73],할슈타트:[47.562,13.649]};
 const label=s=>s.replace(/\s*공항.*$/,'').trim();
 let dispose=()=>{},sharedPaused=false,sharedIndex=0;

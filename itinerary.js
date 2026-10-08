@@ -1,4 +1,4 @@
-import {escapeHTML as esc} from './core.js?v=15';
+import {escapeHTML as esc} from './core.js?v=16';
 export const dining = {
  hungarikum:{name:'헝가리쿰 비스트로 · Hungarikum',city:'부다페스트',address:'Steindl Imre utca 13',menu:['소고기 스튜와 덤플링','바삭한 오리 다리와 감자·양배추'],budget:'2인 22,000–32,000 HUF · 계획 예산',hours:'런치·디너 영업 시간은 공식 예약에서 확인',booking:'예약 가능한 시간을 먼저 확인. 강변 산책 전에 식사하기 좋아요.',url:'https://hungarikumbisztro.hu/',menuUrl:'https://hungarikumbisztro.hu/',source:'https://hungarikumbisztro.hu/'},
  plachutta:{name:'플라후타 · Wollzeile점',city:'빈',address:'Wollzeile 38',menu:['타펠슈피츠 · 육수에 삶은 소고기와 곁들임','비너 슈니첼 · 오스트리아식 커틀릿'],budget:'2인 €85–120 · 계획 예산',hours:'매일 11:30–23:30',booking:'공식 사이트에서 Wollzeile점을 골라 예약하세요.',url:'https://www.plachutta.at/en/restaurant/wollzeile/',menuUrl:'https://www.plachutta.at/en/menu-wollzeile/',source:'https://www.plachutta.at/en/restaurant/wollzeile/'},
@@ -16,25 +16,722 @@ export const dining = {
 dining.kloster.menu=['그릴 치킨과 리지비지 · 완두콩을 넣은 쌀밥','피아커 굴라시 · 오스트리아식 소고기 스튜'];
 const s=(time,activity,place='',note='')=>({time,activity,place,note});
 export const sightseeing=[
- {city:'부다페스트',title:'도착일 · 첫 저녁',pace:'이동일',basis:'예시 일정 · 18:00 시내 도착을 가정한 현지 시각. 실제 교통편과 숙소 위치에 따라 조정.',slots:[s('18:00–19:00','짐 정리·샤워·환복'),s('19:00–19:30','멘자로 이동'),s('19:30–20:30','멘자에서 첫 식사','menza','늦게 도착하면 주방 시간 확인.'),s('20:30–21:00','다뉴브 강변으로 이동'),s('21:00–21:30','국회의사당 야경 사진','', '피곤하면 생략하고 숙소 복귀.')],rain:'비가 오면 강변 산책을 생략하고 식사 후 쉬어요.',url:'https://www.budapestinfo.hu/'},
- {city:'부다페스트',title:'성 지구와 강변 사진',pace:'관광 1일차',basis:'현지 시각의 추천 코스 · 입장·식사 예약 전',slots:[s('09:00–09:30','어부의 요새로 이동'),s('09:30–10:30','어부의 요새에서 커플 사진'),s('10:30–11:30','마차시 성당 주변·성 지구 산책'),s('11:30–12:15','페스트로 이동·식사 대기'),s('12:15–13:30','멘자 점심','menza'),s('13:30–14:15','성 이슈트반 대성당 주변 산책'),s('14:15–15:00','제르보로 도보 이동·대기'),s('15:00–16:00','제르보에서 케이크와 커피','gerbeaud'),s('16:00–17:30','숙소 복귀·90분 휴식'),s('17:30–18:00','저녁 식당으로 이동'),s('18:00–19:00','멘자 저녁 · 점심과 다른 메인 선택','menza'),s('19:00–19:30','강변으로 이동'),s('19:30–20:15','국회의사당 야경 사진·숙소 복귀')],rain:'성 지구 체류를 줄이고 제르보에서 쉬어요. 해질녘 시각에 따라 야경 시간은 이동해요.',url:'https://www.budapestinfo.hu/'},
- {city:'부다페스트',title:'온천과 느긋한 페스트',pace:'추가 관광일',basis:'현지 시각의 추천 코스 · 체류 하루가 더 있을 때 선택',slots:[s('09:30–10:00','영웅광장으로 이동'),s('10:00–10:45','영웅광장·도시공원 산책'),s('10:45–11:30','멘자로 이동·식사 대기'),s('11:30–12:45','굴라시와 메인으로 점심','menza'),s('12:45–13:30','세체니 온천으로 이동·입장 준비'),s('13:30–15:30','세체니 온천 · 수영복과 수건 준비'),s('15:30–17:30','샤워·숙소 복귀·휴식'),s('17:30–18:00','식당 이동'),s('18:00–19:15','멘자 저녁','menza')],rain:'온천이 취향에 맞지 않으면 도시공원 산책을 줄이고 실내 관광을 선택해요.',url:'https://www.budapestinfo.hu/'},
- {city:'빈',title:'빈에 도착하는 날',pace:'기차 이동일',basis:'예시 일정 · 14:00 시내 도착을 가정한 현지 시각. 실제 교통편과 숙소 위치에 따라 조정.',slots:[s('14:00–15:00','역 → 숙소 이동·짐 맡기기·환복'),s('15:00–15:45','슈테판 광장·성당 외관 산책'),s('16:00–17:00','드멜에서 커피·디저트','demel','19:00 이후 도착하면 다음 날로 옮겨요.'),s('17:30–18:45','피그뮐러 저녁','figl')],rain:'열차 지연 시 드멜을 다음 날로 옮기고 저녁 예약부터 조정해요.',url:'https://www.wien.info/en'},
- {city:'빈',title:'벨베데레와 왕궁 산책',pace:'관광 1일차',basis:'현지 시각의 추천 코스 · 벨베데레 입장 시간 예약 필요',slots:[s('09:00–09:30','벨베데레로 이동'),s('09:30–11:30','상궁 미술관 · 클림트 작품 감상'),s('11:30–12:15','도심으로 이동·식사 대기'),s('12:15–13:30','피그뮐러 점심','figl'),s('13:30–14:15','호프부르크·미하엘 광장 산책'),s('14:15–14:45','드멜 대기·주문'),s('14:45–15:45','카이저슈마른과 커피','demel'),s('15:45–17:30','숙소 복귀·휴식'),s('17:30–18:00','저녁 식당 이동'),s('18:00–19:15','피그뮐러 저녁 · 송아지고기 또는 다른 메인 선택','figl'),s('19:15–20:00','오페라극장 외관·케른트너 거리 산책')],rain:'왕궁 바깥 산책을 줄여요. 카페 센트럴은 보수 휴업 중이라 이 코스에 넣지 않았어요.',url:'https://www.belvedere.at/en'},
- {city:'빈',title:'쇤브룬과 달콤한 오후',pace:'추가 관광일',basis:'현지 시각의 추천 코스 · 궁전 입장권 시간 예약 필요',slots:[s('09:00–09:45','쇤브룬으로 이동'),s('09:45–11:15','쇤브룬 궁전 내부 관람'),s('11:15–12:00','정원에서 커플 사진'),s('12:00–13:00','도심 복귀·식사 대기'),s('13:00–14:00','피그뮐러 점심','figl'),s('14:00–14:45','슈테판 광장·그라벤 산책'),s('14:45–15:45','드멜에서 커피·케이크','demel'),s('15:45–17:30','숙소 복귀·휴식'),s('17:30–18:00','식당 이동'),s('18:00–19:15','피그뮐러 저녁','figl')],rain:'정원 산책을 줄이고 궁전 실내를 중심으로 둘러봐요.',url:'https://www.schoenbrunn.at/en/'},
- {city:'린츠',title:'린츠의 구시가지와 첫 저녁',pace:'도시 체류',basis:'예시 일정 · 14:00 시내 도착을 가정한 현지 시각. 실제 교통편과 숙소 위치에 따라 조정.',slots:[s('14:00–14:30','역 → 숙소 이동·짐 맡기기','','숙소 위치와 체크인 전 짐 보관 가능 여부 확인. 불가하면 역 보관 서비스를 확인하고 관광 전에 짐부터 정리.'),s('14:30–15:15','중앙광장·구시가지 산책'),s('15:30–16:30','클로스터호프에서 식사','kloster'),s('16:30–17:00','다뉴브 강변 산책'),s('17:00–17:30','숙소 복귀·짐 정리'),s('17:30–19:00','샤워·휴식')],rain:'비가 오면 강변 산책을 줄이고 구시가지 실내 카페에서 쉬어요.',url:'https://www.linztourismus.at/en/'},
- {city:'프라하',title:'구시가지의 첫 저녁',pace:'기차 이동일',basis:'예시 일정 · 16:00 시내 도착을 가정한 현지 시각. 실제 교통편과 숙소 위치에 따라 조정.',slots:[s('16:00–17:00','역 → 숙소 이동·짐 정리·환복'),s('17:00–17:30','로칼로 이동'),s('17:30–18:45','로칼에서 체코식 저녁','lokal'),s('18:45–19:15','구시가지 광장·천문시계 외관 사진')],rain:'늦게 도착하면 광장 산책을 생략하고 식당 주방 시간을 확인해요.',url:'https://prague.eu/en/'},
- {city:'프라하',title:'카를교, 캄파, 카페 사보이',pace:'관광 1일차',basis:'현지 시각의 추천 코스 · 카페 사보이 예약 추천',slots:[s('08:30–09:00','카를교로 이동'),s('09:00–09:45','카를교에서 커플 사진'),s('09:45–10:15','캄파 산책·사보이 이동'),s('10:15–11:30','사보이 브런치','savoy'),s('11:30–12:15','레논 벽·말라스트라나 산책'),s('12:15–13:00','구시가지로 도보 이동'),s('13:00–14:00','로칼 점심','lokal'),s('14:00–15:00','구시가지 광장·천문시계 외관'),s('15:00–17:30','숙소 복귀·휴식'),s('17:30–18:00','식당 이동'),s('18:00–19:15','로칼 저녁','lokal'),s('19:15–20:00','블타바 강변 야경·숙소 복귀')],rain:'강변 산책을 줄이고 사보이에서 디저트 시간을 더 가져요.',url:'https://prague.eu/en/objevujte/charles-bridge-karluv-most/'},
- {city:'프라하',title:'성 지구와 느린 오후',pace:'추가 관광일',basis:'현지 시각의 추천 코스 · 프라하 성 입장권 확인 필요',slots:[s('09:00–09:45','트램으로 프라하 성 이동'),s('09:45–12:00','프라하 성·성 비투스 대성당 관람'),s('12:00–13:00','말라스트라나 내려오기·사보이 이동'),s('13:00–14:15','사보이에서 점심·디저트','savoy','점심 메뉴에서 메인 선택. 조식 세트는 판매 시간 확인.'),s('14:15–15:00','캄파 강변 산책'),s('15:00–17:30','숙소 복귀·휴식'),s('17:30–18:00','식당 이동'),s('18:00–19:15','로칼 저녁','lokal')],rain:'성 지구의 실내 관람에 집중하고 캄파 산책을 생략해요.',url:'https://prague.eu/en/objevujte/prague-castle-prazsky-hrad/'},
- {city:'드레스덴',title:'엘베강과 바로크 구시가지',pace:'기차 당일 왕복',basis:'예시 일정 · 12:00 시내 도착을 가정한 현지 시각. 실제 교통편과 숙소 위치에 따라 조정.',slots:[s('12:00–12:30','역에서 구시가지 이동'),s('12:30–13:30','츠빙거 안뜰·젬퍼오퍼 외관 사진'),s('13:30–14:45','조피엔켈러 점심','sophien'),s('14:45–15:15','군주의 행렬·성 광장'),s('15:15–16:00','프라우엔 교회 주변·노이마르크트'),s('16:00–16:45','브륄 테라스·엘베강 사진'),s('18:00–18:30','드레스덴역 이동·간단한 식사 준비'),s('18:30–19:00','프라하행 플랫폼 확인·탑승 대기 · 19:00 출발 예시')],rain:'월요일은 조피엔켈러 휴무. 비가 오면 야외 코스를 줄이고 츠빙거 실내 관람 한 곳을 선택해요.',url:'https://www.dresden.de/en/tourism/tourism.php'},
- {city:'귀국',title:'프라하 → 헬싱키 → 인천',pace:'항공 이동일',basis:'예시 일정 · 프라하 12:00 출발, 헬싱키 현지 15:00 도착을 가정. 예약된 항공편 시각이 아니며 연결편에 맞춰 조정.',slots:[s('07:00–07:30','짐 정리·체크아웃'),s('07:30–08:00','아침 식사·공항 이동 준비'),s('08:00–09:00','프라하 공항으로 이동'),s('09:00–11:00','수하물 위탁·보안 검색·출국 수속'),s('11:00–12:00','탑승구 확인·탑승 대기'),s('15:00–15:30','헬싱키에서 인천행 탑승구·마감 시각 확인')],rain:'실제 항공사 수속 마감이 우선입니다. 환승 시간 미확인 상태에서는 헬싱키 시내 관광을 넣지 않아요.',url:'https://www.finavia.fi/en/airports/helsinki-airport/airport/services-facilities/transfer'}
+ {
+  "date": "11월 7일 (토)",
+  "city": "출발",
+  "title": "한국 출발 · 대전 → 광명 → 인천공항",
+  "slots": [
+   {
+    "time": "16:30–17:30",
+    "activity": "출발 준비·짐과 여권 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:30–18:00",
+    "activity": "대전역 이동·열차 탑승 준비",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:00–20:30",
+    "activity": "KTX·공항버스로 인천공항 이동",
+    "place": "",
+    "note": "각 구간은 예약된 출발 시각 우선. 광명에서 버스 정류장과 터미널을 확인하세요."
+   },
+   {
+    "time": "20:30–22:00",
+    "activity": "수하물 위탁·보안 검색·저녁 식사",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "22:00–23:00",
+    "activity": "탑승구 이동·헬싱키행 탑승 준비",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "url": "https://www.airport.kr/",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 8일 (일)",
+  "city": "헬싱키",
+  "title": "첫 환승일 · 헬싱키 산책 → 부다페스트",
+  "slots": [
+   {
+    "time": "06:00–07:30",
+    "activity": "입국·짐 연결 여부 확인·아침 식사",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "07:30–08:30",
+    "activity": "공항철도로 중앙역 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "08:30–09:30",
+    "activity": "중앙역·에스플라나디 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:30–10:30",
+    "activity": "원로원 광장·대성당 외관 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:30–11:30",
+    "activity": "마켓 광장·항구 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "11:30–12:30",
+    "activity": "중심가에서 점심",
+    "place": "",
+    "note": "따뜻한 연어 수프와 빵. 당일 영업 중인 식당의 메뉴·가격을 먼저 확인하세요."
+   },
+   {
+    "time": "12:30–13:30",
+    "activity": "기념품 구경·중앙역 복귀",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "13:30–14:30",
+    "activity": "공항철도로 공항 복귀",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:30–16:00",
+    "activity": "보안 검색·탑승구 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "19:30–21:00",
+    "activity": "부다페스트 도착 후 숙소 이동·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "21:30–22:15",
+    "activity": "멘자에서 첫 저녁",
+    "place": "menza",
+    "note": "지연되면 주방 마감 확인 후 가까운 식사로 변경."
+   }
+  ],
+  "url": "https://www.myhelsinki.fi/",
+  "rain": "환승·입국이 지연되면 시내 방문을 줄이거나 생략하세요. 공항 복귀 목표 14:30.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "city": "부다페스트",
+  "title": "성 지구와 강변 사진",
+  "pace": "부다페스트에서 온전히 보내는 하루",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요.",
+  "slots": [
+   {
+    "time": "09:00–09:30",
+    "activity": "어부의 요새로 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:30–10:30",
+    "activity": "어부의 요새에서 커플 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:30–11:30",
+    "activity": "마차시 성당 주변·성 지구 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "11:30–12:15",
+    "activity": "페스트로 이동·식사 대기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "12:15–13:30",
+    "activity": "멘자 점심",
+    "place": "menza",
+    "note": ""
+   },
+   {
+    "time": "13:30–14:15",
+    "activity": "성 이슈트반 대성당 주변 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:15–15:00",
+    "activity": "제르보로 도보 이동·대기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:00–16:00",
+    "activity": "제르보에서 케이크와 커피",
+    "place": "gerbeaud",
+    "note": ""
+   },
+   {
+    "time": "16:00–17:30",
+    "activity": "숙소 복귀·90분 휴식",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:30–18:00",
+    "activity": "저녁 식당으로 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:00–19:00",
+    "activity": "헝가리쿰에서 오리 다리·소고기 스튜",
+    "place": "hungarikum",
+    "note": ""
+   },
+   {
+    "time": "19:00–19:30",
+    "activity": "강변으로 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "19:30–20:15",
+    "activity": "국회의사당 야경 사진·숙소 복귀",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "rain": "성 지구 체류를 줄이고 제르보에서 쉬어요. 해질녘 시각에 따라 야경 시간은 이동해요.",
+  "url": "https://www.budapestinfo.hu/",
+  "date": "11월 9일 (월)"
+ },
+ {
+  "date": "11월 10일 (화)",
+  "city": "빈",
+  "title": "부다페스트 → 빈 · 도심 산책과 저녁",
+  "slots": [
+   {
+    "time": "08:00–09:00",
+    "activity": "아침 식사·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:00–10:30",
+    "activity": "체크아웃·역 이동·탑승 준비",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:30–14:30",
+    "activity": "빈으로 기차 이동",
+    "place": "",
+    "note": "열차 출발·도착은 개인 티켓 기준. 식사와 탑승 대기 포함."
+   },
+   {
+    "time": "14:30–15:30",
+    "activity": "숙소 이동·짐 맡기기·환복",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:30–16:00",
+    "activity": "슈테판 광장·그라벤 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "16:00–16:45",
+    "activity": "드멜에서 디저트",
+    "place": "demel",
+    "note": ""
+   },
+   {
+    "time": "17:00–18:00",
+    "activity": "피그뮐러에서 저녁",
+    "place": "figl",
+    "note": ""
+   },
+   {
+    "time": "18:00–19:00",
+    "activity": "공연장 이동 또는 오페라극장 주변 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "19:00–21:30",
+    "activity": "공연 관람 또는 도심 야경",
+    "place": "",
+    "note": "공연을 보는 경우 입장·종료 시각은 티켓 확인. 야경 산책은 자유 선택."
+   }
+  ],
+  "url": "https://www.wien.info/en",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 11일 (수)",
+  "city": "린츠",
+  "title": "빈의 짧은 아침 → 린츠의 첫 저녁",
+  "slots": [
+   {
+    "time": "08:00–09:00",
+    "activity": "아침 식사·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:00–10:15",
+    "activity": "벨베데레 정원 주변 산책",
+    "place": "",
+    "note": "실내 관람은 입장 예약과 역 복귀 시간을 확보할 수 있을 때만 선택."
+   },
+   {
+    "time": "10:15–11:30",
+    "activity": "숙소에서 짐 찾기·체크아웃·역 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "11:30–14:00",
+    "activity": "린츠행 열차 대기·이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:00–15:00",
+    "activity": "숙소 이동·짐 맡기기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:00–16:30",
+    "activity": "체크인·샤워·휴식",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "16:30–17:30",
+    "activity": "중앙광장·구시가지 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:30–18:30",
+    "activity": "클로스터호프 저녁",
+    "place": "kloster",
+    "note": ""
+   },
+   {
+    "time": "18:30–19:00",
+    "activity": "다뉴브 강변·숙소 복귀",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "url": "https://www.linztourismus.at/en/",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "city": "할슈타트",
+  "title": "호숫가에서 보내는 하루",
+  "pace": "린츠에서 렌터카 당일 왕복",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요.",
+  "slots": [
+   {
+    "time": "07:30–08:00",
+    "activity": "아침 식사",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "08:00–08:30",
+    "activity": "차량 인수·상태 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "08:30–10:45",
+    "activity": "할슈타트로 이동 · 휴게 시간 포함",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:45–11:45",
+    "activity": "주차 대기·마을 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "11:45–12:30",
+    "activity": "호수 전망 포인트에서 커플 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "12:30–13:30",
+    "activity": "브로이가스트호프 점심",
+    "place": "hallstatt",
+    "note": ""
+   },
+   {
+    "time": "13:30–14:30",
+    "activity": "마르크트 광장·호숫가 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:30–15:15",
+    "activity": "주차장 복귀·출발 준비",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:15–17:45",
+    "activity": "린츠로 복귀 · 휴게·교통 여유 포함",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:45–18:30",
+    "activity": "주유·차량 반납 · 실제 마감 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:30–19:30",
+    "activity": "클로스터호프 저녁",
+    "place": "kloster",
+    "note": ""
+   }
+  ],
+  "rain": "폭설·결빙이면 장거리 운전 코스를 변경해요. 소금광산·스카이워크는 운영 시간과 사전 입장 가능 여부 확인 후 선택하며 기본 코스에는 넣지 않았어요.",
+  "url": "https://www.hallstatt.net/parking-in-hallstatt/cars/",
+  "date": "11월 12일 (목)"
+ },
+ {
+  "date": "11월 13일 (금)",
+  "city": "프라하",
+  "title": "린츠 → 프라하 · 짐 정리 후 구시가지",
+  "slots": [
+   {
+    "time": "08:00–09:00",
+    "activity": "아침 식사·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:00–10:30",
+    "activity": "린츠 구시가지 짧은 산책",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:30–11:30",
+    "activity": "체크아웃·역 이동·간식 구매",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "11:30–16:00",
+    "activity": "프라하행 기차 대기·이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "16:00–17:00",
+    "activity": "숙소 이동·체크인·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:00–17:30",
+    "activity": "샤워·환복",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:30–18:00",
+    "activity": "로칼로 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:00–19:15",
+    "activity": "체코식 저녁",
+    "place": "lokal",
+    "note": ""
+   },
+   {
+    "time": "19:15–20:00",
+    "activity": "구시가지 광장·천문시계 외관 사진",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "url": "https://prague.eu/en/",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 14일 (토)",
+  "city": "드레스덴",
+  "title": "프라하 ↔ 드레스덴 · 엘베강과 구시가지",
+  "slots": [
+   {
+    "time": "08:00–09:00",
+    "activity": "아침 식사·당일 짐 챙기기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:00–10:00",
+    "activity": "프라하 중앙역 이동·탑승 준비",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:00–13:00",
+    "activity": "드레스덴행 기차 대기·이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "13:00–13:30",
+    "activity": "역에서 구시가지 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "13:30–14:30",
+    "activity": "조피엔켈러 점심",
+    "place": "sophien",
+    "note": ""
+   },
+   {
+    "time": "14:30–15:30",
+    "activity": "츠빙거 안뜰·젬퍼오퍼 외관 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:30–16:15",
+    "activity": "군주의 행렬·프라우엔 교회 주변",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "16:15–17:00",
+    "activity": "브륄 테라스·엘베강 커플 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:00–18:00",
+    "activity": "간단한 저녁·역으로 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:00–19:00",
+    "activity": "플랫폼 확인·탑승 준비",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "19:00–22:00",
+    "activity": "기차로 프라하 복귀·숙소 이동",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "url": "https://www.dresden.de/en/tourism/tourism.php",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 15일 (일)",
+  "city": "프라하",
+  "title": "공항 주변 숙소로 이동 · 가벼운 마지막 산책",
+  "slots": [
+   {
+    "time": "08:30–09:30",
+    "activity": "아침 식사·짐 정리",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:30–10:45",
+    "activity": "체크아웃 준비·이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:45–12:30",
+    "activity": "공항 주변 숙소로 이동·짐 맡기기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "12:30–13:30",
+    "activity": "점심·짐 보관 가능 여부 확인",
+    "place": "",
+    "note": "짐 보관이 안 되면 시내 재방문을 생략하고 숙소 주변에서 쉬어요."
+   },
+   {
+    "time": "13:30–14:30",
+    "activity": "짐 보관 가능할 때만 시내 이동",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:30–15:30",
+    "activity": "카를교·캄파에서 마지막 커플 사진",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:30–16:30",
+    "activity": "카페 사보이에서 디저트",
+    "place": "savoy",
+    "note": ""
+   },
+   {
+    "time": "16:30–17:30",
+    "activity": "공항 주변 숙소로 복귀",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "17:30–18:30",
+    "activity": "체크인·짐 정리·휴식",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "18:30–19:30",
+    "activity": "숙소 주변에서 저녁",
+    "place": "",
+    "note": "공항 식당 또는 숙소 식당의 당일 메뉴와 영업 시간 확인."
+   }
+  ],
+  "url": "https://prague.eu/en/",
+  "rain": "짐 보관·교통편·날씨가 불확실하면 시내 왕복 대신 공항 주변에서 쉬어요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 16일 (월)",
+  "city": "귀국",
+  "title": "프라하 → 헬싱키 → 인천",
+  "slots": [
+   {
+    "time": "07:00–08:00",
+    "activity": "아침 식사·짐 정리·체크아웃",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "08:00–09:00",
+    "activity": "프라하 공항 이동·터미널 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "09:00–10:30",
+    "activity": "수하물 위탁·보안 검색",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "10:30–11:30",
+    "activity": "탑승구 확인·탑승 대기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:00–15:45",
+    "activity": "헬싱키 환승·인천행 탑승구 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "15:45–16:30",
+    "activity": "공항에서 간단한 식사",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "16:30–17:30",
+    "activity": "탑승 준비",
+    "place": "",
+    "note": "시내 관광은 첫 환승일에 배치. 귀국 환승은 공항 안에서 연결편을 준비하세요."
+   }
+  ],
+  "url": "https://www.finavia.fi/en/airports/helsinki-airport/airport/services-facilities/transfer",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ },
+ {
+  "date": "11월 17일 (화)",
+  "city": "귀국",
+  "title": "인천 도착 · 집으로",
+  "slots": [
+   {
+    "time": "12:30–14:00",
+    "activity": "입국 심사·수하물 찾기",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:00–14:30",
+    "activity": "공항에서 식사·귀가 교통편 확인",
+    "place": "",
+    "note": ""
+   },
+   {
+    "time": "14:30–17:00",
+    "activity": "집으로 이동",
+    "place": "",
+    "note": "입국 소요 시간에 맞춰 버스·기차를 선택하세요."
+   },
+   {
+    "time": "17:00–18:00",
+    "activity": "짐 정리·휴식",
+    "place": "",
+    "note": ""
+   }
+  ],
+  "url": "https://www.airport.kr/",
+  "rain": "지연·날씨에 따라 산책을 줄이고 이동과 식사를 우선해요.",
+  "pace": "날짜별 여정",
+  "basis": "현지 시각의 추천 시간표 · 관광·식사는 제안이며 교통편의 확정 시각은 개인 티켓에서 확인하세요."
+ }
 ];
-// Optional public day trip; contains no personal rental or booking information.
-sightseeing.splice(7,0,{city:'할슈타트',title:'호숫가에서 보내는 하루',pace:'렌터카 당일치기',basis:'린츠 출발 08:30을 가정한 일반 추천 코스. 차량 인수·운전·주차에 따라 조정.',slots:[s('07:30–08:00','아침 식사'),s('08:00–08:30','차량 인수·상태 확인'),s('08:30–10:45','할슈타트로 이동 · 휴게 시간 포함'),s('10:45–11:45','주차 대기·마을 이동'),s('11:45–12:30','호수 전망 포인트에서 커플 사진'),s('12:30–13:30','브로이가스트호프 점심','hallstatt'),s('13:30–14:30','마르크트 광장·호숫가 산책'),s('14:30–15:15','주차장 복귀·출발 준비'),s('15:15–17:45','린츠로 복귀 · 휴게·교통 여유 포함'),s('17:45–18:30','주유·차량 반납 · 실제 마감 확인'),s('18:30–19:30','클로스터호프 저녁','kloster')],rain:'폭설·결빙이면 장거리 운전 코스를 변경해요. 소금광산·스카이워크는 운영 시간과 사전 입장 가능 여부 확인 후 선택하며 기본 코스에는 넣지 않았어요.',url:'https://www.hallstatt.net/parking-in-hallstatt/cars/'});
-for(const d of sightseeing)for(const slot of d.slots){
- if(slot.activity==='멘자 저녁 · 점심과 다른 메인 선택'){slot.activity='헝가리쿰에서 오리 다리·소고기 스튜';slot.place='hungarikum';}
- if(slot.activity==='피그뮐러 저녁 · 송아지고기 또는 다른 메인 선택'){slot.activity='플라후타에서 타펠슈피츠 저녁';slot.place='plachutta';}
-}
 function restaurant(id){
  const p=dining[id];if(!p)return '';
  const maps='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' '+p.address+' '+p.city);
@@ -43,7 +740,7 @@ function restaurant(id){
 export function setupItinerary(){
  const host=document.querySelector('#itinerary');if(!host)return;
  const cities=['모두',...new Set(sightseeing.map(d=>d.city))];
- host.innerHTML=`<div class="section-head"><div><p class="eyebrow">OUR HONEYMOON, HOUR BY HOUR</p><h2>몇 시에, 어디서, 무엇을 할지.</h2></div></div><p class="schedule-intro">모든 시간은 현지 시각의 예시 일정입니다. 이동일도 시계 시각으로 표시하며, 실제 예약 시각과 숙소 위치에 맞춰 조정해 주세요. 공개 안내는 도시별 13개 선택 코스입니다. 추가 관광일 코스는 체류 여유가 있을 때 골라 주세요. 개인 예약에 맞춘 일차·시간표는 별도로 관리합니다. 식당 이름을 눌러 메뉴·주소·예약 안내를 펼쳐 보세요.</p><div class="schedule-filters" aria-label="관광 도시 선택">${cities.map((c,i)=>`<button data-city-filter="${esc(c)}" aria-pressed="${i===0}">${esc(c)}</button>`).join('')}</div><div class="schedule-grid"></div>`;
- const render=city=>{host.querySelector('.schedule-grid').innerHTML=sightseeing.map((d,i)=>({d,i})).filter(({d})=>city==='모두'||d.city===city).map(({d,i})=>`<article class="schedule-card" id="schedule-day-${i+1}"><div class="schedule-day"><span>코스 ${String(i+1).padStart(2,'0')}</span><p class="eyebrow">${esc(d.city)} · ${esc(d.pace)}</p></div><h3>${esc(d.title)}</h3><p class="schedule-basis">${esc(d.basis)}</p><ol class="schedule-timeline">${d.slots.map(slot=>`<li><time>${esc(slot.time)}</time><div class="schedule-event"><strong>${esc(slot.activity)}</strong>${slot.note?`<p>${esc(slot.note)}</p>`:''}${restaurant(slot.place)}</div></li>`).join('')}</ol><p class="schedule-rain">${esc(d.rain)}</p><div class="schedule-actions"><a href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">공식 관광 안내 ↗</a>${d.city!=='귀국'?`<button data-map-city="${esc(d.city)}">도시 지도 보기</button>`:''}</div></article>`).join('');};
+ host.innerHTML=`<div class="section-head"><div><p class="eyebrow">OUR HONEYMOON, HOUR BY HOUR</p><h2>11월 7일–17일, 우리의 11일.</h2></div></div><p class="schedule-intro">1일차부터 11일차까지 실제 체류 순서에 맞춘 날짜별 여정입니다. 헬싱키 관광은 11월 8일 첫 환승일에, 할슈타트는 11월 12일에, 드레스덴 왕복은 11월 14일에 배치했습니다. 표시 시간은 현지 시각의 추천 시간표이며 교통편 확정 시각·예약 상세는 개인 티켓에서 확인하세요. 식당 이름을 눌러 메뉴·주소·예약 안내를 펼쳐 보세요.</p><div class="schedule-filters" aria-label="관광 도시 선택">${cities.map((c,i)=>`<button data-city-filter="${esc(c)}" aria-pressed="${i===0}">${esc(c)}</button>`).join('')}</div><div class="schedule-grid"></div>`;
+ const render=city=>{host.querySelector('.schedule-grid').innerHTML=sightseeing.map((d,i)=>({d,i})).filter(({d})=>city==='모두'||d.city===city).map(({d,i})=>`<article class="schedule-card" id="schedule-day-${i+1}"><div class="schedule-day"><span>${i+1}일차 · ${esc(d.date)}</span><p class="eyebrow">${esc(d.city)} · ${esc(d.pace)}</p></div><h3>${esc(d.title)}</h3><p class="schedule-basis">${esc(d.basis)}</p><ol class="schedule-timeline">${d.slots.map(slot=>`<li><time>${esc(slot.time)}</time><div class="schedule-event"><strong>${esc(slot.activity)}</strong>${slot.note?`<p>${esc(slot.note)}</p>`:''}${restaurant(slot.place)}</div></li>`).join('')}</ol><p class="schedule-rain">${esc(d.rain)}</p><div class="schedule-actions"><a href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">공식 관광 안내 ↗</a>${!['귀국','출발'].includes(d.city)?`<button data-map-city="${esc(d.city)}">도시 지도 보기</button>`:''}</div></article>`).join('');};
  host.addEventListener('click',e=>{const b=e.target.closest('button');if(b?.dataset.cityFilter){host.querySelectorAll('[data-city-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render(b.dataset.cityFilter);}if(b?.dataset.mapCity){document.dispatchEvent(new CustomEvent('trip-city-selected',{detail:b.dataset.mapCity}));document.querySelector('.map-opening')?.scrollIntoView({block:'start'});}});render('모두');
 }

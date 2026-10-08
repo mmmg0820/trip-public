@@ -1,6 +1,6 @@
-import {setupItinerary} from './itinerary.js?v=15';
-import {escapeHTML as esc, searchRecommendations, publicRoute} from './core.js?v=15';
-import {setupMap} from './map.js?v=15';
+import {setupItinerary} from './itinerary.js?v=16';
+import {escapeHTML as esc, searchRecommendations, publicRoute} from './core.js?v=16';
+import {setupMap} from './map.js?v=16';
 const data=window.TRIP_DATA;
 const search=document.querySelector('#trip-search');
 let filter='all';
