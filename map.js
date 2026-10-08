@@ -15,7 +15,7 @@ export async function setupMap(data,diagram=false){
  }
  host.replaceChildren();mode.textContent='개략도';mode.onclick=()=>setupMap(data,true);
  const controller=new AbortController(),signal=controller.signal,L=globalThis.L;
- const map=L.map(host,{scrollWheelZoom:false,zoomControl:true,minZoom:2,maxZoom:18,zoomAnimation:false,attributionControl:true});
+ const map=L.map(host,{scrollWheelZoom:true,zoomControl:true,minZoom:2,maxZoom:18,zoomAnimation:false,attributionControl:true});
  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'}).addTo(map).on('tileerror',()=>{document.querySelector('#map-network-note').textContent='배경 지도 연결을 확인해 주세요. 개략도는 오프라인에서도 볼 수 있어요.';});
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('map-svg-overlay');svg.setAttribute('aria-hidden','true');host.append(svg);
  const select=document.querySelector('#map-segment'),pause=document.querySelector('#map-pause'),overview=document.querySelector('#map-overview');
