@@ -1,4 +1,4 @@
-const CACHE='trip-public-guide-v10';
+const CACHE='trip-public-guide-v11';
 const FILES=['./','./index.html','./style.css','./public.js','./map.js','./core.js','./data.js','./assets/world.json','./assets/budapest.jpg','./assets/favicon.svg','./manifest.webmanifest','./assets/icon-180.png','./assets/icon-192.png','./assets/icon-512.png'];
 const allowed=new Set(FILES.map(f=>new URL(f,self.registration.scope).href));
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));

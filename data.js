@@ -120,6 +120,8 @@ window.TRIP_DATA = {
     }
   ],
   "transport": [
+    {"name":"대전 → 광명","kind":"bus","code":"국내 버스 이동 개략도"},
+    {"name":"광명 → 인천","kind":"bus","code":"공항 버스 이동 개략도"},
     {
       "name": "인천 → 헬싱키",
       "kind": "flight",
