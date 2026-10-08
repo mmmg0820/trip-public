@@ -8,7 +8,8 @@ test('public timelines use explicit time ranges and valid dining references',()=
   let prior=0;
   for(const slot of d.slots){
    assert.deepEqual(Object.keys(slot).sort(),['activity','note','place','time']);
-   assert(/\d{2}:\d{2}/.test(slot.time));
+   assert(/^\d{2}:\d{2}–\d{2}:\d{2}$/.test(slot.time),slot.time);
+   assert(!/도착\s*\+|귀환 열차|출발\s*−|환승\s*\+/.test(slot.time));
    if(slot.place)assert(dining[slot.place],slot.place);
    const m=slot.time.match(/^(\d{2}):(\d{2})–(\d{2}):(\d{2})$/);
    if(m){const start=+m[1]*60 + +m[2],end=+m[3]*60 + +m[4];assert(start>=prior);assert(end>start);prior=end;}
