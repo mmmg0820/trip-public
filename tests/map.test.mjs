@@ -31,9 +31,9 @@ test('land vehicles stay upright through pause, route changes and visibility cha
   const nodes={'#travel-map':host,'#map-segment':select,'#map-pause':pause,'#map-overview':overview,'#map-mode':element(),'#map-caption':element(),'#active-route':path,'.map-vehicle':marker,'.vehicle-direction':art};
   const document={hidden:false,querySelector:s=>nodes[s],addEventListener:(k,v)=>events[k]=v};
   const media={matches:false,addEventListener:(k,v)=>mediaEvents[k]=v};
-  const context={document,routeVehicleTransform,routeBounds,matchMedia:()=>media,fetch:async()=>({json:async()=>({features:[]})}),requestAnimationFrame:cb=>{const id=++nextFrame;frames.set(id,cb);return id;},cancelAnimationFrame:id=>frames.delete(id),esc:s=>s};
+  const context={AbortController,document,routeVehicleTransform,routeBounds,matchMedia:()=>media,fetch:async()=>({json:async()=>({features:[]})}),requestAnimationFrame:cb=>{const id=++nextFrame;frames.set(id,cb);return id;},cancelAnimationFrame:id=>frames.delete(id),esc:s=>s};
   vm.createContext(context);
-  const source=(await readFile(new URL('../map.js',import.meta.url),'utf8')).replace(/^import[^\n]+\n/,'').replace('export async function setupMap','async function setupMap');
+  const source=(await readFile(new URL('../map-fallback.js',import.meta.url),'utf8')).replace(/^import[^\n]+\n/,'').replace('export async function setupMap','async function setupMap').replace('export function disposeDiagram','function disposeDiagram').replace('export function setDiagramPaused','function setDiagramPaused').replace('export function isDiagramPaused','function isDiagramPaused');
   vm.runInContext(source,context);
   await context.setupMap({transport:[{name:'부다페스트 → 빈',kind:'train',code:'개략도'},{name:'프라하 → 드레스덴',kind:'bus',code:'개략도'},{name:'인천 → 헬싱키',kind:'flight',code:'개략도'}]});
   const tick=time=>{const [id,cb]=frames.entries().next().value;frames.delete(id);cb(time);};

@@ -1,5 +1,6 @@
-import {escapeHTML as esc, searchRecommendations, publicRoute} from './core.js?v=13';
-import {setupMap} from './map.js?v=13';
+import {setupItinerary} from './itinerary.js?v=14';
+import {escapeHTML as esc, searchRecommendations, publicRoute} from './core.js?v=14';
+import {setupMap} from './map.js?v=14';
 const data=window.TRIP_DATA;
 const search=document.querySelector('#trip-search');
 let filter='all';
@@ -28,3 +29,5 @@ function route(){
 window.addEventListener('hashchange',route);route();render();
 setupMap(data).catch(()=>{document.querySelector('#map-caption').textContent='지도를 불러오지 못했어요. 잠시 후 새로고침해 주세요.';});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{document.querySelector('#offline-status').textContent='오프라인 저장을 사용할 수 없어요. 온라인에서 가이드를 확인해 주세요.';});
+
+setupItinerary();
