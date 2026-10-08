@@ -120,17 +120,25 @@ window.TRIP_DATA = {
     }
   ],
   "transport": [
-    {"name":"대전 → 광명","kind":"bus","code":"국내 버스 이동 개략도"},
-    {"name":"광명 → 인천","kind":"bus","code":"공항 버스 이동 개략도"},
+    {
+      "name": "대전 → 광명",
+      "kind": "train",
+      "code": "KTX · 국내 이동 개략도"
+    },
+    {
+      "name": "광명 → 인천공항",
+      "kind": "bus",
+      "code": "공항버스 · 공항 이동 개략도"
+    },
     {
       "name": "인천 → 헬싱키",
       "kind": "flight",
-      "code": "도시 간 이동 개략도"
+      "code": "유럽행 · 헬싱키 경유"
     },
     {
       "name": "헬싱키 → 부다페스트",
       "kind": "flight",
-      "code": "도시 간 이동 개략도"
+      "code": "유럽행 · 헬싱키 환승 후 이동"
     },
     {
       "name": "부다페스트 → 빈",
@@ -153,9 +161,19 @@ window.TRIP_DATA = {
       "code": "도시 간 이동 개략도"
     },
     {
-      "name": "프라하 → 드레스덴",
-      "kind": "bus",
-      "code": "도시 간 버스 이동 개략도"
+      "name": "드레스덴 → 프라하",
+      "kind": "train",
+      "code": "도시 간 기차 이동 개략도"
+    },
+    {
+      "name": "프라하 → 헬싱키",
+      "kind": "flight",
+      "code": "귀국편 · 헬싱키 경유"
+    },
+    {
+      "name": "헬싱키 → 인천",
+      "kind": "flight",
+      "code": "귀국편 · 인천 도착"
     }
   ]
 };
