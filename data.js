@@ -121,11 +121,6 @@ window.TRIP_DATA = {
   ],
   "transport": [
     {
-      "name": "프라하 → 드레스덴",
-      "kind": "bus",
-      "code": "도시 간 버스 이동 개략도"
-    },
-    {
       "name": "인천 → 헬싱키",
       "kind": "flight",
       "code": "도시 간 이동 개략도"
@@ -154,6 +149,11 @@ window.TRIP_DATA = {
       "name": "프라하 → 드레스덴",
       "kind": "train",
       "code": "도시 간 이동 개략도"
+    },
+    {
+      "name": "프라하 → 드레스덴",
+      "kind": "bus",
+      "code": "도시 간 버스 이동 개략도"
     }
   ]
 };

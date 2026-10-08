@@ -17,7 +17,14 @@ document.querySelector('#source-links').innerHTML=data.sources.map(s=>`<p><a hre
 const install=document.querySelector('#install-dialog');
 document.querySelector('#show-install').addEventListener('click',()=>{if(!install.open)install.showModal();});
 document.querySelector('#close-install').addEventListener('click',()=>install.close());
-function route(){if(publicRoute(location.hash)!==location.hash){history.replaceState(null,'',location.pathname+location.search+'#quick');document.querySelector('#quick').scrollIntoView();}}
+function route(){
+ if(publicRoute(location.hash)!==location.hash){history.replaceState(null,'',location.pathname+location.search+'#quick');document.querySelector('#quick').scrollIntoView();}
+ const selected=location.hash==='#taste'?'taste':'quick';
+ document.querySelectorAll('.tabs [data-tab]').forEach(b=>{
+  const active=b.dataset.tab===selected;b.classList.toggle('active',active);
+  if(active)b.setAttribute('aria-current','location');else b.removeAttribute('aria-current');
+ });
+}
 window.addEventListener('hashchange',route);route();render();
 setupMap(data).catch(()=>{document.querySelector('#map-caption').textContent='지도를 불러오지 못했어요. 잠시 후 새로고침해 주세요.';});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{document.querySelector('#offline-status').textContent='오프라인 저장을 사용할 수 없어요. 온라인에서 가이드를 확인해 주세요.';});
